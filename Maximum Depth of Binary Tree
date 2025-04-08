@@ -1,0 +1,13 @@
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+// Recursively finding the the height of both subtree
+        int leftheight = maxDepth(root.left);
+        int rightHeight = maxDepth(root.right);
+
+        return Math.max(leftheight,rightHeight) + 1;
+
+    }
+}
