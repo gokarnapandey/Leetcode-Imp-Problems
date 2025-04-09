@@ -1,0 +1,34 @@
+class Solution {
+
+    // Helper method to compute height and check balance simultaneously
+    private int height(TreeNode tree) {
+        // Base case: null node has height 0
+        if (tree == null) {
+            return 0;
+        }
+
+        // Recursively get the height of left subtree
+        int leftH = height(tree.left);
+        // If left subtree is unbalanced, propagate -1 up
+        if (leftH == -1) return -1;
+
+        // Recursively get the height of right subtree
+        int rightH = height(tree.right);
+        // If right subtree is unbalanced, propagate -1 up
+        if (rightH == -1) return -1;
+
+        // If current node is unbalanced, return -1
+        if (Math.abs(leftH - rightH) > 1) {
+            return -1;
+        }
+
+        // Return height if balanced
+        return Math.max(leftH, rightH) + 1;
+    }
+
+    // Main method to check if tree is height balanced
+    public boolean isBalanced(TreeNode root) {
+        // If height is -1, the tree is unbalanced
+        return height(root) != -1;
+    }
+}
